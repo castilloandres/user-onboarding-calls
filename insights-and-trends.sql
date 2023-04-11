@@ -72,7 +72,7 @@ ORDER BY TotalUsers DESC
 SELECT BetaReadinessScore, UserConclusion, COUNT(*) as TotalUsers
 FROM `lottie-labs-382216.users.onboarding_calls`
 WHERE
-  BetaReadinessScore IS NOT NULL OR
+  BetaReadinessScore IS NOT NULL AND
   UserConclusion IS NOT NULL
 GROUP BY BetaReadinessScore, UserConclusion
 ORDER BY TotalUsers DESC
