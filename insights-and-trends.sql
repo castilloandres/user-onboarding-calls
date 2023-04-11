@@ -60,3 +60,19 @@ SELECT DashboardComments, OnCallFeedback, BetaFeedback, COUNT(*) AS Count
 FROM `lottie-labs-382216.users.onboarding_calls`
 GROUP BY DashboardComments, OnCallFeedback, BetaFeedback
 ORDER BY Count DESC
+
+-- Analyze lottie handoff considetations
+SELECT LottieHandoffConsiderations, COUNT(*) as TotalUsers
+FROM `lottie-labs-382216.users.onboarding_calls`
+WHERE LottieHandoffConsiderations IS NOT NULL
+GROUP BY LottieHandoffConsiderations
+ORDER BY TotalUsers DESC
+
+-- Analyze correlation between BetaReadinessScore and UserConclusion
+SELECT BetaReadinessScore, UserConclusion, COUNT(*) as TotalUsers
+FROM `lottie-labs-382216.users.onboarding_calls`
+WHERE
+  BetaReadinessScore IS NOT NULL OR
+  UserConclusion IS NOT NULL
+GROUP BY BetaReadinessScore, UserConclusion
+ORDER BY TotalUsers DESC
